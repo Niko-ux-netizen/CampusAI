@@ -148,41 +148,30 @@
        "how to contact college",
        "college telephone number",
        "college number",
-       "What is your contact no",
+       "What is your contact",
        "Contact number?",
        "how to call you",
-       "College phone no?",
+       "College phone?",
        "how can i contact you",
        "Can i get your phone number",
        "how can i call you",
        "phone number",
-       "phone no",
+       "phone",
        "call"
     ],
     "responses": [
        "You can contact at: NUMBER"
-    ],
-    "context_set": ""
+    ]
  },
     {
-      "tag": "help",
-      "pattern": ["Help me", "I need assistance", "Can you assist me?"],
-      "responses": ["Of course! I'm here to help. What do you need assistance with?", "Certainly! How can I assist you today?"]
-    },
-    {
       "tag": "unsupported",
-      "pattern": ["I don't understand", "This is confusing", "Can you clarify?"],
+      "pattern": ["I don't understand", "This is confusing", "Can you clarify?", "idk", "wdym", "what do you mean?", "what?", "huh?"],
       "responses": ["I apologize for any confusion. Please rephrase your question, and I'll do my best to provide a clear answer.", "I'm here to help. Please feel free to ask your question in a different way."]
     },
     {
       "tag": "compliment",
-      "pattern": ["You're great", "You're doing a good job", "Impressive"],
+      "pattern": ["You're great", "You're doing a good job", "Impressive", "nice work!"],
       "responses": ["Thank you for the compliment! I'm here to assist and provide the best information I can.", "I appreciate the kind words. How can I assist you further?"]
-    },
-    {
-      "tag": "questions",
-      "pattern": ["What can I ask?", "What do people ask most?", "Frequently asked questions", "FAQs", "Where can I find FAQs?"],
-      "responses": ["1. Where is campus proximus? \n 2. What are the campusses of UCLL? \n 3. \n 3. Who do I contact for information about my study? \n 4. Is UCLL difficult? \n 5. Where can I apply to become an exchange student? "]
     },
     {
       "tag": "location",
@@ -201,11 +190,6 @@
       "address",
       "location"],
       "responses": ["You can find this campus <a href='https://www.google.com/maps/place/Hogeschool+UCLL+-+Campus+Proximus/@50.846609,4.7266785,15z/data=!4m6!3m5!1s0x47c166ba515fdd4d:0xb2dba6fd812b1730!8m2!3d50.846609!4d4.7266785!16s%2Fg%2F11csjlw0th?entry=ttu' target='_blank'>here</a>", "Campus Proximus is at Geldenaaksebaan 335, 3001 Leuven"]
-    },
-    {
-      "tag": "campusses",
-      "pattern": ["What are the campusses of UCLL?", "How many campusses do UCLL have?", "UCLL campusses?", "Is there more than 3 campusses in UCLL?"],
-      "responses": ["There are 7 campusses ....", "UCLL has 7 campusses. 3 in Leuven, 1 in Hasselt, 1 in Brussel, 1 in Ghent and 1 in Antwerp"]
     },
     {
       "tag": "event",
@@ -229,7 +213,7 @@
    },
     {
       "tag": "difficulty",
-      "pattern": ["Is UCLL difficult?", "What is the difficulty of UCLL", "What is the success rate of students in UCLL?", "What if UCLL is too difficult?"],
+      "pattern": ["Is UCLL difficult?", "is it hard?","am i smart enough?","can i do this?", "What is the success rate of students in UCLL?", "too difficult?"],
       "responses": ["Each study is different. It will depend what your interests are. UCLL has a lot of available support but this does not mean you should not be pro-active in the study. ", "UCLL is not impossible. In every study the projects will be more real life scenario's than theoretical. If you find it more enjoyable to learn from books than this will be more difficult than if you were more practical. "]
     },
     {
@@ -265,18 +249,12 @@
         "What financial aid options are available?",
         "How can I apply for financial aid?",
         "Financial help at UCLL",
-        "Financial aid?"
+        "Financial aid?",
+        "scholarships",
+        "where can i get scholarships?"
       ],
       "responses": [
         "UCLL offers various scholarships and financial aid options. Explore our scholarship opportunities on our website and learn how to apply."
-      ]
-    },
-    {
-      "tag": "programs",
-      "pattern": ["Tell me about computer science programs", "What are the study options for computer science?", "Which campuses offer computer science programs?"],
-      "responses": [
-        "UCLL offers computer science programs at Campus Proximus.",
-        "Our computer science programs cover a wide range of topics and provide a solid foundation for a successful career in IT."
       ]
     },
     {
@@ -291,8 +269,8 @@
       ]
    },
     {
-      "tag": "academic_programs",
-      "pattern": ["What academic programs does the university offer?", "Tell me about the available courses", "Can you list the majors at the university?"],
+      "tag": "programs",
+      "pattern": ["programs?", "available courses", "what kind of programs?", "what study can I chose?", "Change study?", "studies"],
       "responses": ["We offer a wide range of academic programs including Business, Computer Science, Psychology, and many more. Do you have a specific program in mind?"]
     },
     {
@@ -302,12 +280,12 @@
     },
     {
       "tag": "student_life",
-      "pattern": ["What is student life like at UCLL?", "Tell me about student organizations", "Are there any cultural events on campus?"],
-      "responses": ["Our university offers a vibrant student life with various clubs and organizations. You can also enjoy cultural events and activities throughout the year."]
+      "pattern": ["student life?", "student organizations", "parties?", "going out", "where can i go out?", "clubs?", "are there any bars?"],
+      "responses": ["Our university offers a vibrant student life with various clubs and organizations. You can also enjoy cultural activities throughout the year."]
     },
     {
       "tag": "faculty_and_staff",
-      "pattern": ["Can you tell me about the faculty members at UCLL?", "Who are the professors for the Computer Science department?", "How can I contact a specific professor?"],
+      "pattern": ["faculty members at UCLL?", "Professors", "Contact a specific professor?"],
       "responses": ["Our university has a diverse and dedicated faculty. If you have a specific professor in mind or need contact information, I can assist you further."]
     }
   ]

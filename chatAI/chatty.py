@@ -101,11 +101,11 @@ except:
 class ChatModel(nn.Module):
     def __init__(self):
         super(ChatModel, self).__init__()  # Call the parent class constructor
-        self.fc1 = nn.Linear(len(training[0]), 16)  
-        self.fc2 = nn.Linear(16, 16) 
-        self.fc3 = nn.Linear(16, 16)  
-        self.fc4 = nn.Linear(16, 16)
-        self.fc5 = nn.Linear(16, len(output[0]))  
+        self.fc1 = nn.Linear(len(training[0]), 128)  
+        self.fc2 = nn.Linear(128, 128) 
+        self.fc3 = nn.Linear(128, 128)  
+        self.fc4 = nn.Linear(128, 128)
+        self.fc5 = nn.Linear(128, len(output[0]))
 
 
     # ?
@@ -118,7 +118,7 @@ class ChatModel(nn.Module):
         return x
 
 
-    
+
 # network is assigned and created
 model = ChatModel()
 # This calculates the cross entropy loss of the predicted outcome and the true target
@@ -132,8 +132,8 @@ except FileNotFoundError:
     # If model doesn't exist, train the model
     train_losses = []
     val_losses = []
-    num_epochs = 1000
-    learning_rate = 0.001
+    num_epochs = 5000
+    learning_rate = 0.0001
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
     # Split the dataset into training and validation sets
@@ -196,23 +196,27 @@ def chat(message):
         output = model(input_tensor)
 
         # Find the index with the highest probability
-        predicted_class = torch.argmax(output, dim=1).item()
+        probabilities = torch.softmax(output, dim=1)
+        max_prob, predicted_class = torch.max(probabilities, dim=1)
         tag = labels[predicted_class]
         intent = next((intent for intent in data["intents"] if intent["tag"] == tag), None)
-
-        if intent:
+        print(max_prob)
+        if intent and max_prob.item() > 0.1:
             responses = intent["responses"]
             response = random.choice(responses)  # Select a random response
 
         else:
-        # Use DialoGPT for generating response
+        # When an input doesn't match any patterns then it will switch to this part. 
+        # DialoGPT is a free pretrained model from microsoft that handles simple conversational tasks.
+        # Trained on 147 Million reddit posts. Any inapropriate language is stopped by our model.
+        # You can find explanation on HuggingFace.co
             counter = 0
             while counter >= 0:
                 new_user_input_ids = tokenizer_gpt.encode(message + tokenizer_gpt.eos_token, return_tensors='pt')
                 bot_input_ids = torch.cat([chat_history_ids, new_user_input_ids], dim=-1) if counter > 0 else new_user_input_ids
 
                 chat_history_ids = model_gpt.generate(bot_input_ids, max_length=1000, pad_token_id=tokenizer_gpt.eos_token_id)
-                return tokenizer_gpt.decode(chat_history_ids[:, bot_input_ids.shape[-1]:][0], skip_special_tokens=True)
+                return tokenizer_gpt.decode(chat_history_ids[:, bot_input_ids.shape[-1]:][0], skip_special_tokens=True) + " - " + str(max_prob)
 
-        return response
+        return response + " - " + str(max_prob)
 
