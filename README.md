@@ -4,7 +4,7 @@
 # Description
 ___
 
-This chatbot is a combination of a trained model (few hundred inputs with given responses - small scaled). This is a model I trained myself so students can ask questions 
+This chatbot is a combination of a trained model (few hundred conversations with given responses - small scaled). This is a model I trained myself so students can ask questions 
 about the campus, courses, professors and links to any information that can be found on the schools website.
 
 The second model is pretrained. DialoGPT-medium from Microsoft. A free model that is trained on 147M reddit discussions. https://github.com/microsoft/DialoGPT

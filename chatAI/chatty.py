@@ -85,10 +85,11 @@ except:
         #only lists we need for our model
         pickle.dump((words, labels, training, output), f)
 
-# A neural network is created here. This class will create a certain amount of layers. Depending on how large you want your AI to be.
-# I used 5 layers. The first layer is for the input layer. Than 3 hidden layers of 16 neurons. And the last layer is for the output.
+# A neural network is created here. Create a certain amount of layers. Depending on how large you want the AI to be.
+# I used 5 layers. The first layer is the input layer containing n-neurons which is depends on the length of sentences in the dataset.
+# Then 3 hidden layers of 128 neurons. And the last layer is for the output containing n-neurons for the amount of patterns in the dataset.
 # Each neuron is connected with every neuron of the next layer. These will predict the possibilities of each 'tag'.
-# For example: Input: Hello!. This word 'technically' goes through each layer, comparing to each pattern. greeting tag: 80.4%, goodbye tag:50.2%
+# For example: Input: Hello!. This word goes through each layer, comparing to each pattern. greeting tag: 80.4%, goodbye tag:50.2%
 # -> greeting tag will be chosen and a random answer will be used as response
 # layer 1(input) layer 2         layer 3          layer 4          layer 5(output)
 #   O       -       O       -       O        -       O        -       O
