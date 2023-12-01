@@ -208,7 +208,7 @@ def chat(message):
         else:
         # When an input doesn't match any patterns then it will switch to this part. 
         # DialoGPT is a free pretrained model from microsoft that handles simple conversational tasks.
-        # Trained on 147 Million reddit posts. Any inapropriate language is stopped by our model.
+        # Trained on 147 Million reddit posts. Any inapropriate language is stopped by the model.
         # You can find explanation on HuggingFace.co
             counter = 0
             while counter >= 0:
