@@ -20,7 +20,7 @@ Current objective
 ![Alt text](image.png)
 
 
-
+Note: the model is not 100% accurate and is still in development.
 
 
 # starting the ChatBot:
