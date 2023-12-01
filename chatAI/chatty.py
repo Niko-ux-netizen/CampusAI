@@ -39,7 +39,7 @@ except:
     docs_x = []
     docs_y = []
 
-    # for loop for filling all the above lists
+    # for loop for filling all the above lists with the patterns
     for intent in data["intents"]:
         for pattern in intent["pattern"]:
             wrds = nltk.word_tokenize(pattern)
@@ -49,7 +49,7 @@ except:
 
         if intent["tag"] not in labels:
             labels.append(intent["tag"])
-
+    # each word is stemmed, helping the model identify words
     words = [stemmer.stem(w.lower()) for w in words if w != "?"]
     words = sorted(list(set(words)))
 
@@ -86,7 +86,7 @@ except:
         pickle.dump((words, labels, training, output), f)
 
 # A neural network is created here. This class will create a certain amount of layers. Depending on how large you want your AI to be.
-# I used 5 layers. The first layer is for the input layer. Than 3 layers of 16 neurons. And the last layer is for the output.
+# I used 5 layers. The first layer is for the input layer. Than 3 hidden layers of 16 neurons. And the last layer is for the output.
 # Each neuron is connected with every neuron of the next layer. These will predict the possibilities of each 'tag'.
 # For example: Input: Hello!. This word 'technically' goes through each layer, comparing to each pattern. greeting tag: 80.4%, goodbye tag:50.2%
 # -> greeting tag will be chosen and a random answer will be used as response
@@ -97,7 +97,6 @@ except:
 #   .               .               .                .                .
 #   0       -       O       -       O        -       O        -       O 
 #   0       -       O       -       O        -       O        -       O
-
 class ChatModel(nn.Module):
     def __init__(self):
         super(ChatModel, self).__init__()  # Call the parent class constructor
@@ -108,7 +107,8 @@ class ChatModel(nn.Module):
         self.fc5 = nn.Linear(128, len(output[0]))
 
 
-    # ?
+    # input x is passed through each layer. At the last layer it is passed through a softmax function
+    # this function creates a probability of the raw score.
     def forward(self, x):
         x = torch.relu(self.fc1(x))
         x = torch.relu(self.fc2(x))
@@ -167,12 +167,13 @@ except FileNotFoundError:
     plt.show()
 
 
-# returns an array of all the words in each pattern/tag
+# creates a bag of words
 def bag_of_words(s, words):
     bag = [0 for _ in range(len(words))]
+    # tokenizing the input
     s_words = nltk.word_tokenize(s)
+    # stemming tokenized words
     s_words = [stemmer.stem(word.lower()) for word in s_words]
-
     for se in s_words:
         for i,w in enumerate(words):
             if w == se:
