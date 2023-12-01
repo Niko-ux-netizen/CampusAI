@@ -12,7 +12,10 @@ The second model is pretrained. DialoGPT-medium from Microsoft. A free model tha
 The model is still far from perfect and is still in development. Currently when the probability of an input-response is higher than 1, it goes to the campus model. If its 
 lower it chooses the Dialo model for better conversational skills. 
 
-Current objective is to fine tune the DialoGPT model to handle the campus questions.
+Current objective 
+
+- Fine tuning the DialoGPT model to handle the campus questions.
+- Modifying the dataset to handle more/more complex questions or inputs.
 
 ![Alt text](image.png)
 
